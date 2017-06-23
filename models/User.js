@@ -10,7 +10,7 @@ const User = conn.define('users', {
     created_at: {type: Sequelize.DATE},
     updated_at: {type: Sequelize.DATE}
 }, {
-    timestamps: false
+    underscored: true
 });
 
 module.exports = User;

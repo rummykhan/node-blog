@@ -1,5 +1,6 @@
 const conn = require('../connection');
 const Sequelize = require('sequelize');
+const User = require('./User');
 
 const Article = conn.define('articles', {
     id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
@@ -13,7 +14,9 @@ const Article = conn.define('articles', {
     created_at: {type: Sequelize.DATE},
     updated_at: {type: Sequelize.DATE},
 }, {
-    timestamps: false
+    underscored: true
 });
+
+Article.belongsTo(User, {as: 'user'});
 
 module.exports = Article;
