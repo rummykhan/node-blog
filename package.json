@@ -4,7 +4,8 @@
   "description": "Just a node fam.",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "hot": "cross-env NODE_ENV=development nodemon app.js"
   },
   "author": "Rehan Manzoor",
   "license": "MIT",
@@ -16,5 +17,9 @@
     "mysql2": "^1.3.5",
     "sequelize": "^4.2.0",
     "showdown": "^1.7.1"
+  },
+  "devDependencies": {
+    "cross-env": "^5.0.1",
+    "nodemon": "^1.11.0"
   }
 }
