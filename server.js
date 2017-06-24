@@ -13,7 +13,7 @@ app.set('views', `${__dirname}/views/`);
 app.locals.pretty = true;
 
 // Get Express Router from routes.
-const router = require('./routes');
+const router = require('./app/routes');
 
 // Set Session with a secret and name.
 app.use(session({
