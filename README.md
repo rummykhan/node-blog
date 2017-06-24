@@ -1,6 +1,6 @@
 ## A blog made with Love
 
-### Made using
+### Using
 1. Node.JS
 2. Express JS
 3. MySQL
