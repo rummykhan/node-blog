@@ -1,29 +1,27 @@
-const express = require('express');
-const router = express.Router();
-const passport = require('passport');
+const express = require('express')
+    , router = express.Router()
+    , passport = require('passport')
 
-// Use Sequelize for Mysql Queries.
-const Sequelize = require('sequelize');
+    // Use Sequelize for Mysql Queries.
+    , Sequelize = require('sequelize')
 
-// Require Models.
-const models = require('../models/index');
+    // Require Models.
+    , models = require('../models/index');
 
-router.get('/',
-    passport.authenticate('local', {
-        successRedirect: '/admin',
-        failureRedirect: '/admin/login'
-    }),
-    function (req, res, next) {
-        res.send('Admin G');
-    });
+router.get('/', function (req, res, next) {
+
+    if (!req.isAuthenticated()) {
+        res.status(401).redirect('/admin/login');
+    }
+
+    res.send('Admin G');
+});
 
 router.get('/login', function (req, res, next) {
 
     if (req.isAuthenticated()) {
-        res.redirect('/admin/login');
+        res.redirect('/admin');
     }
-
-    console.log('Un-Authenticated');
 
     res.render('auth/default/login/index');
 });

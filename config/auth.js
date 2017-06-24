@@ -1,7 +1,7 @@
 const passport = require('passport')
-    , LocalStrategy = require('passport-local').Strategy;
-const models = require('../app/models');
-const bcrypt = require('bcrypt');
+    , LocalStrategy = require('passport-local').Strategy
+    , models = require('../app/models')
+    , bcrypt = require('bcrypt');
 
 // Set Up Local Starategy.
 module.exports = function () {
@@ -17,8 +17,6 @@ module.exports = function () {
 
                     bcrypt.compare(password, user.password, (err, res) => {
 
-                        console.log('compare: ', res);
-
                         if (!res) {
                             return done(null, false, {message: 'Invalid username or password.'});
                         }
@@ -31,4 +29,13 @@ module.exports = function () {
                 });
         }
     ));
+
+
+    passport.serializeUser(function (user, done) {
+        done(null, user);
+    });
+
+    passport.deserializeUser(function (user, done) {
+        done(null, user);
+    });
 };

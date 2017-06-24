@@ -4,9 +4,37 @@ const express = require('express');
 const app = express();
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const passport = require('passport');
+const cookieParser = require('cookie-parser');
+
+// maintain the order of middleware when using express with passport
+// http://passportjs.org/docs/authenticate
 
 // Set Up static assets directory.
 app.use(express.static(`${__dirname}/public/`));
+
+// Set up Cookie Parser
+app.use(cookieParser());
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse request body as JSON
+app.use(bodyParser.json());
+
+// Set Session with a secret and name.
+app.use(session({
+    secret: 'a1q2u3i4c5k6b7r8o9w0n1f2o3x4j5u6m7p8s9o0v1e2r3t4h5e6l7a8z9y0d1o2g',
+    name: 'r_b_secure',
+    resave: true,
+    saveUninitialized: true,
+}));
+
+// Initialize passport
+app.use(passport.initialize());
+
+// Add Session middleware of passport
+app.use(passport.session());
 
 // Set Up View Templating.
 app.set('view engine', 'ejs');
@@ -22,32 +50,10 @@ passportLocal();
 // Makes the generated html easier to read
 app.locals.pretty = true;
 
-// Set Session with a secret and name.
-app.use(session({
-    secret: 'a1q2u3i4c5k6b7r8o9w0n1f2o3x4j5u6m7p8s9o0v1e2r3t4h5e6l7a8z9y0d1o2g',
-    name: 'r_b_secure',
-    resave: true,
-    saveUninitialized: true,
-}));
-
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
-
-// parse request body as JSON
-app.use(bodyParser.json());
-
-// Get Frontend Routes from app.
-const frontend = require('./app/routes/frontend');
-
-// Get Frontend Routes from app.
-const admin = require('./app/routes/admin');
-
 // Add the frontend part of the app.
-app.use('/', frontend);
+app.use('/', require('./app/routes/frontend'));
 
 // Add the admin side of the app
-app.use('/admin', admin);
+app.use('/admin', require('./app/routes/admin'));
 
-const server = app.listen(appConfig.port, function () {
-    console.log(`Listening on port ${appConfig.port}.`);
-});
+app.listen(appConfig.port);
