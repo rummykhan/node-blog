@@ -12,8 +12,7 @@
 
 ### TODO
 
-1. Add Authentication Middleware
-2. Add CSRF Tokens
+1. Add CSRF Tokens Support
 
 
 ### Help
