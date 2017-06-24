@@ -7,8 +7,9 @@
 
 ### Deployment
 1. `npm install`
-2. Update `./config/index` for database connection (and `port` for development).
-3. `npm run start` or `npm run hot` for restarting server at file change
+2. Update `./config/app.js` for server port.
+3. Update `./config/database.js` for database connection.
+4. `npm run start` or `npm run hot` for restarting server at file change.
 
 ### TODO
 
