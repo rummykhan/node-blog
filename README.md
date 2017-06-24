@@ -2,7 +2,7 @@
 
 ### Made using
 1. Node.JS
-2. Express Framework
+2. Express JS
 3. MySQL
 
 ### Deployment
