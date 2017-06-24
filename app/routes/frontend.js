@@ -52,8 +52,4 @@ router.get('/post/:slug?', function (req, res, next) {
         });
 });
 
-router.get('*', function (req, res) {
-    res.send("404 Not Found!");
-});
-
 module.exports = router;

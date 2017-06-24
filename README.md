@@ -10,6 +10,10 @@
 2. Update `./config/index` for database connection (and `port` for development).
 3. `npm run start` or `npm run hot` for restarting server at file change
 
+### TODO
+
+1. Add Authentication Middleware
+2. Add CSRF Tokens
 
 ### Contact 
 

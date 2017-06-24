@@ -7,13 +7,20 @@ const bcrypt = require('bcrypt');
 module.exports = function () {
     passport.use(new LocalStrategy(
         (username, password, done) => {
+
             models.User.findOne({where: {email: username}})
                 .then(user => {
 
+                    if (!user) {
+                        return done(null, false, {message: 'Invalid username or password.'});
+                    }
+
                     bcrypt.compare(password, user.password, (err, res) => {
 
+                        console.log('compare: ', res);
+
                         if (!res) {
-                            return done(null, false, {message: 'Incorrect password.'});
+                            return done(null, false, {message: 'Invalid username or password.'});
                         }
 
                         return done(null, user);
