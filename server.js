@@ -3,7 +3,34 @@
 const express = require('express');
 const app = express();
 const session = require('express-session');
+const bcrypt = require('bcrypt');
+const passport = require('passport')
+    , LocalStrategy = require('passport-local').Strategy;
+
+
 const appConfig = require('./config/app');
+const models = require('./app/models');
+
+passport.use(new LocalStrategy(
+    (username, password, done) => {
+        models.User.findOne({where: {email: username}})
+            .then(user => {
+
+                bcrypt.compare(password, user.password, (err, res) => {
+
+                    if (!res) {
+                        return done(null, false, {message: 'Incorrect password.'});
+                    }
+
+                    return done(null, user);
+                });
+
+            })
+            .catch(error => {
+                return done(error);
+            });
+    }
+));
 
 // Set Up View Templating.
 app.set('view engine', 'ejs');
@@ -13,7 +40,7 @@ app.set('views', `${__dirname}/views/`);
 app.locals.pretty = true;
 
 // Get Express Router from routes.
-const router = require('./app/routes');
+const router = require('./app/routes/frontend');
 
 // Set Session with a secret and name.
 app.use(session({
@@ -30,8 +57,11 @@ app.use(function (req, res, next) {
     next();
 });
 
-// Add Routing to the app.
+// Add the frontend part of the app.
 app.use('/', router);
+
+// Add the admin side of the app
+
 
 const server = app.listen(appConfig.port, function () {
     console.log(`Listening on port ${appConfig.port}.`);
