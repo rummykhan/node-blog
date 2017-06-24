@@ -1,11 +1,11 @@
 // Required Express Framework
 // https://expressjs.com/
-const express = require('express');
-const app = express();
-const session = require('express-session');
-const bodyParser = require('body-parser');
-const passport = require('passport');
-const cookieParser = require('cookie-parser');
+const express = require('express')
+    , app = express()
+    , session = require('express-session')
+    , bodyParser = require('body-parser')
+    , passport = require('passport')
+    , cookieParser = require('cookie-parser');
 
 // maintain the order of middleware when using express with passport
 // http://passportjs.org/docs/authenticate
@@ -17,7 +17,7 @@ app.use(express.static(`${__dirname}/public/`));
 app.use(cookieParser());
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 
 // parse request body as JSON
 app.use(bodyParser.json());
@@ -54,6 +54,6 @@ app.locals.pretty = true;
 app.use('/', require('./app/routes/frontend'));
 
 // Add the admin side of the app
-app.use('/admin', require('./app/routes/admin'));
+app.use(appConfig.adminPortal, require('./app/routes/admin'));
 
 app.listen(appConfig.port);
