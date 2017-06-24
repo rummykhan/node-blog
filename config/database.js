@@ -1,5 +1,5 @@
-module.exports.port = 3000;
-module.exports.database = {
+
+module.exports = {
     host: 'localhost',
     database: 'rehan_manzoor',
     username: 'root',

@@ -4,8 +4,8 @@
   "description": "Just a node fam.",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "hot": "cross-env NODE_ENV=development nodemon app.js"
+    "start": "node server.js",
+    "hot": "cross-env NODE_ENV=development nodemon server.js"
   },
   "author": "Rehan Manzoor",
   "license": "MIT",

@@ -1,4 +1,4 @@
-const conn = require('../connection');
+const conn = require('./connection/index');
 const Sequelize = require('sequelize');
 const showdown = require('showdown');
 const converter = new showdown.Converter();

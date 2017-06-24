@@ -1,4 +1,4 @@
-const conn = require('../connection');
+const conn = require('./connection/index');
 const Sequelize = require('sequelize');
 
 const User = conn.define('users', {

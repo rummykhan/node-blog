@@ -9,7 +9,7 @@ const showdown = require('showdown');
 const converter = new showdown.Converter();
 
 // Require Models.
-const models = require('../models');
+const models = require('../app/models');
 
 router.get('/', function (req, res, next) {
 

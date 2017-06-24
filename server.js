@@ -3,7 +3,7 @@
 const express = require('express');
 const app = express();
 const session = require('express-session');
-const port = require('./config').port;
+const appConfig = require('./config/app');
 
 // Set Up View Templating.
 app.set('view engine', 'ejs');
@@ -33,6 +33,6 @@ app.use(function (req, res, next) {
 // Add Routing to the app.
 app.use('/', router);
 
-const server = app.listen(port, function () {
-    console.log(`Listening on port ${port}.`);
+const server = app.listen(appConfig.port, function () {
+    console.log(`Listening on port ${appConfig.port}.`);
 });
