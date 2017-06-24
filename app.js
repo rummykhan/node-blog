@@ -2,7 +2,6 @@
 // https://expressjs.com/
 const express = require('express');
 const app = express();
-const helmet = require('helmet');
 const session = require('express-session');
 const port = require('./config').port;
 
@@ -23,6 +22,13 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
 }));
+
+app.use(function (req, res, next) {
+
+    console.log(req.url);
+
+    next();
+});
 
 // Add Routing to the app.
 app.use('/', router);

@@ -1,11 +1,15 @@
 const express = require('express');
-const app = express();
 const router = express.Router();
-const models = require('../models');
+
+// Use Sequelize for Mysql Queries.
+const Sequelize = require('sequelize');
+
+// Showdown for Markdown conversion
 const showdown = require('showdown');
 const converter = new showdown.Converter();
-const Sequelize = require('sequelize');
-const Infrastructure = require('../infrastructure');
+
+// Require Models.
+const models = require('../models');
 
 router.get('/', function (req, res, next) {
 
@@ -40,7 +44,6 @@ router.get('/post/:slug?', function (req, res, next) {
         .then(article => {
 
             article.content = converter.makeHtml(article.content);
-            article.created_at = Infrastructure.formatTime(article.created_at);
 
             res.render("frontend/default/post/index", {article, title: article.title});
         })
