@@ -1,9 +1,10 @@
-## A blog made with Love
+## A Node.JS blog
 
 ### Using
 1. Node.JS
 2. Express JS
 3. MySQL
+4. Love
 
 ### Deployment
 1. `npm install`
