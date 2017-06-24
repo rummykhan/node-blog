@@ -3,44 +3,29 @@
 const express = require('express');
 const app = express();
 const session = require('express-session');
-const bcrypt = require('bcrypt');
-const passport = require('passport')
-    , LocalStrategy = require('passport-local').Strategy;
 
-
-const appConfig = require('./config/app');
-const models = require('./app/models');
-
-passport.use(new LocalStrategy(
-    (username, password, done) => {
-        models.User.findOne({where: {email: username}})
-            .then(user => {
-
-                bcrypt.compare(password, user.password, (err, res) => {
-
-                    if (!res) {
-                        return done(null, false, {message: 'Incorrect password.'});
-                    }
-
-                    return done(null, user);
-                });
-
-            })
-            .catch(error => {
-                return done(error);
-            });
-    }
-));
+// Set Up static assets directory.
+app.use(express.static(`${__dirname}/public/`));
 
 // Set Up View Templating.
 app.set('view engine', 'ejs');
 app.set('views', `${__dirname}/views/`);
 
+// Require App Config..
+const appConfig = require('./config/app');
+
+// Enable Passport Local Authentication.
+const passportLocal = require('./config/auth');
+passportLocal();
+
 // Makes the generated html easier to read
 app.locals.pretty = true;
 
-// Get Express Router from routes.
-const router = require('./app/routes/frontend');
+// Get Frontend Routes from app.
+const frontend = require('./app/routes/frontend');
+
+// Get Frontend Routes from app.
+const admin = require('./app/routes/admin');
 
 // Set Session with a secret and name.
 app.use(session({
@@ -51,17 +36,14 @@ app.use(session({
 }));
 
 app.use(function (req, res, next) {
-
-    console.log(req.url);
-
     next();
 });
 
 // Add the frontend part of the app.
-app.use('/', router);
+app.use('/', frontend);
 
 // Add the admin side of the app
-
+app.use('/admin', admin);
 
 const server = app.listen(appConfig.port, function () {
     console.log(`Listening on port ${appConfig.port}.`);
