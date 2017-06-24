@@ -1,5 +1,7 @@
 const conn = require('../connection');
 const Sequelize = require('sequelize');
+const showdown = require('showdown');
+const converter = new showdown.Converter();
 const User = require('./User');
 
 const Article = conn.define('articles', {

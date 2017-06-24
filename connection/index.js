@@ -1,12 +1,8 @@
 const Sequelize = require('sequelize');
+const dbConfig = require('../config').database;
 
-const host = 'localhost';
-const db = 'rehan_manzoor';
-const username = 'root';
-const password = '';
-
-const conn = new Sequelize(db, username, password, {
-    host,
+const conn = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, {
+    host: dbConfig.host,
     dialect: 'mysql',
 
     pool: {

@@ -5,8 +5,10 @@ const models = require('../models');
 const showdown = require('showdown');
 const converter = new showdown.Converter();
 const Sequelize = require('sequelize');
+const Infrastructure = require('../infrastructure');
 
 router.get('/', function (req, res, next) {
+
     models.Article.findAll({
         isActive: false, order: [
             ['created_at', 'DESC']
@@ -24,19 +26,22 @@ router.get('/post/:slug?', function (req, res, next) {
 
     const slug = req.params.slug;
 
-    models.Article.findOne({where: {slug}, include:[
-        {
-            model: models.User,
-            where: {
-                id: Sequelize.col('articles.user_id')
-            },
-            as: 'user'
-        }
-    ]})
+    models.Article.findOne({
+        where: {slug}, include: [
+            {
+                model: models.User,
+                where: {
+                    id: Sequelize.col('articles.user_id')
+                },
+                as: 'user'
+            }
+        ]
+    })
         .then(article => {
-            console.log(article.constructor);
+
             article.content = converter.makeHtml(article.content);
-            article.created_at = article.created_at.toLocaleString();
+            article.created_at = Infrastructure.formatTime(article.created_at);
+
             res.render("frontend/default/post/index", {article, title: article.title});
         })
         .catch(error => {

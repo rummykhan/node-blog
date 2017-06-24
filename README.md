@@ -1,4 +1,4 @@
-## A Blog made with Love
+## A blog made with Love
 
 ### Made using
 1. Node.JS
@@ -7,8 +7,8 @@
 
 ### Deployment
 1. `npm install`
-2. Update `./connection/index.` for database connection.
-2. `npm run start`
+2. Update `./config/index` for database connection (and `port` for development).
+3. `npm run start` or `npm run hot` for restarting server at file change
 
 
 ### Contact 
