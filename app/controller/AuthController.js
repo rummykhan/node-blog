@@ -5,11 +5,12 @@ const AuthController = {
 
     login: passport.authenticate('local', {
         successRedirect: appConfig.adminPortal,
-        failureRedirect: appConfig.adminLogin
+        failureRedirect: appConfig.adminLogin,
+        failureFlash: true
     }),
 
     showLoginForm: function (req, res) {
-        res.render('auth/default/login/index');
+        res.render('auth/default/login/index', {errors: req.flash('error')});
     },
 
     logout: function (req, res) {

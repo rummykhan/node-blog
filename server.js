@@ -6,7 +6,8 @@ const express = require('express')
     , bodyParser = require('body-parser')
     , passport = require('passport')
     , cookieParser = require('cookie-parser')
-    , csrf = require('csurf');
+    , csrf = require('csurf')
+    , flash = require('connect-flash');
 
 // maintain the order of middleware when using express with passport
 // http://passportjs.org/docs/authenticate
@@ -34,6 +35,8 @@ app.use(session({
         httpOnly: true
     }
 }));
+
+app.use(flash());
 
 // Add CSRF Generation and validation
 app.use(csrf({cookie: true}));

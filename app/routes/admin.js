@@ -10,7 +10,7 @@ const express = require('express')
     , PasswordController = require('../controller/admin/PasswordController');
 
 router.get('/login', isGuest, AuthController.showLoginForm);
-router.post('/login', AuthController.login);
+router.post('/login', isGuest, AuthController.login);
 router.get('/logout', isAuthenticated, AuthController.logout);
 
 router.get('/', isAuthenticated, DashboardController.dashboard);
