@@ -1,44 +1,21 @@
 const express = require('express')
     , router = express.Router()
-    , passport = require('passport')
 
-    // Use Sequelize for Mysql Queries.
-    , Sequelize = require('sequelize')
-
-    // Require Models.
-    , models = require('../models/index')
-
-    // Get App Config
-    , appConfig = require('../../config/app')
-
-    // Get Auth Middleware
+    // Get Auth Middlewares
     , isGuest = require('../middleware/guest')
-    , isAuthenticated = require('../middleware/user');
+    , isAuthenticated = require('../middleware/user')
 
-router.get('/login', isGuest, function (req, res) {
-    res.render('auth/default/login/index');
-});
+    , AuthController = require('../controller/AuthController')
+    , DashboardController = require('../controller/admin/DashboardController')
+    , PasswordController = require('../controller/admin/PasswordController');
 
-router.post('/login', passport.authenticate('local', {
-    successRedirect: appConfig.adminPortal,
-    failureRedirect: appConfig.adminLogin
-}));
+router.get('/login', isGuest, AuthController.showLoginForm);
+router.post('/login', AuthController.login);
+router.get('/logout', isAuthenticated, AuthController.logout);
 
-router.get('/', isAuthenticated, function (req, res) {
-    res.render('admin/default/home-page/index', {title: 'Dashboard'})
-});
+router.get('/', isAuthenticated, DashboardController.dashboard);
 
-router.get('/change/password', isAuthenticated, function (req, res) {
-    res.render('admin/default/change-password/index');
-});
-
-router.post('/change/password', isAuthenticated, function (req, res) {
-
-});
-
-router.get('/logout', isAuthenticated, function (req, res) {
-    req.logOut();
-    res.redirect(appConfig.adminLogin);
-});
+router.get('/change/password', isAuthenticated, PasswordController.showChangePasswordForm);
+router.post('/change/password', isAuthenticated, PasswordController.changePassword);
 
 module.exports = router;
