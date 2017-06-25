@@ -6,8 +6,7 @@
 3. MySQL
 4. Passport
 5. csurf
-6. Express Validator
-7. Love
+6. Love
 
 ### Deployment
 1. Run `npm install` for installing packages.
@@ -37,7 +36,6 @@
 * https://stackoverflow.com/questions/7042340/error-cant-set-headers-after-they-are-sent-to-the-client
 * https://github.com/expressjs/csurf
 * http://scottksmith.com/blog/2014/09/04/simple-steps-to-secure-your-express-node-application/
-* https://github.com/ctavan/express-validator
 
 ### Contact 
 

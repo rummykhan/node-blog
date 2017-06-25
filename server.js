@@ -6,8 +6,7 @@ const express = require('express')
     , bodyParser = require('body-parser')
     , passport = require('passport')
     , cookieParser = require('cookie-parser')
-    , csrf = require('csurf')
-    , expressValidator = require('express-validator');
+    , csrf = require('csurf');
 
 // maintain the order of middleware when using express with passport
 // http://passportjs.org/docs/authenticate
@@ -20,10 +19,6 @@ app.use(cookieParser());
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}));
-
-// this line must be immediately after any of the bodyParser middlewares!
-// Express Validator for Form Validation.
-app.use(expressValidator());
 
 // parse request body as JSON
 app.use(bodyParser.json());

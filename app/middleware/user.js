@@ -4,9 +4,8 @@ const appConfig = require('../../config/app');
 // if the user is not authenticated redirect him to login page.
 module.exports = function (req, res, next) {
 
+    // Add CSRF Token to global for view templates.
     res.locals.csrfToken = req.csrfToken();
-
-    console.log('auth: ', req.isAuthenticated());
 
     if (req.isAuthenticated()) {
 
