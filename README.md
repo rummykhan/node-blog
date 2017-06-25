@@ -36,6 +36,8 @@
 * https://stackoverflow.com/questions/7042340/error-cant-set-headers-after-they-are-sent-to-the-client
 * https://github.com/expressjs/csurf
 * http://scottksmith.com/blog/2014/09/04/simple-steps-to-secure-your-express-node-application/
+* https://github.com/jaredhanson/connect-flash
+
 
 ### Contact 
 
