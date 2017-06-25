@@ -4,18 +4,21 @@
 1. Node.JS
 2. Express JS
 3. MySQL
-4. Love
+4. Passport
+5. csurf
+6. Express Validator
+7. Love
 
 ### Deployment
-1. `npm install`
-2. Update `./config/app.js` for server port.
+1. Run `npm install` for installing packages.
+2. Update `./config/app.js` for server port and admin URL.
 3. Update `./config/database.js` for database connection.
-4. `npm run start` or `npm run hot` for restarting server at file change.
+4. Run `npm run hot` for starting server.
+5. Goto browser `http://localhost:3000`
 
 ### TODO
 
-1. Add CSRF Tokens Support
-2. Add Request Validator
+1. Add Request Validator
 
 
 ### Help
@@ -34,6 +37,7 @@
 * https://stackoverflow.com/questions/7042340/error-cant-set-headers-after-they-are-sent-to-the-client
 * https://github.com/expressjs/csurf
 * http://scottksmith.com/blog/2014/09/04/simple-steps-to-secure-your-express-node-application/
+* https://github.com/ctavan/express-validator
 
 ### Contact 
 
