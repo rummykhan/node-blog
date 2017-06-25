@@ -32,6 +32,10 @@ router.get('/change/password', isAuthenticated, function (req, res) {
     res.render('admin/default/change-password/index');
 });
 
+router.post('/change/password', isAuthenticated, function (req, res) {
+
+});
+
 router.get('/logout', isAuthenticated, function (req, res) {
     req.logOut();
     res.redirect(appConfig.adminLogin);
