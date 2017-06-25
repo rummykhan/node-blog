@@ -1,7 +1,8 @@
-html{
+html {
     /* Just reset the font-size of root to use rem*/
     font-size: 62.5% !important;
 }
+
 .margin-top-20 {
     margin-top: 20px
 }
@@ -213,35 +214,51 @@ h1, h2, h3, h4 {
 .big-message {
     font-size: 4.5rem;
 }
-.menu{
+
+.menu {
     margin-top: 20px;
 }
-.menu a{
+
+.menu a {
     margin: 25px;
     color: black;
     font-size: 2.0rem;
 }
-.article-comments{
+
+.article-comments {
     overflow: hidden;
     margin-bottom: 40px;
     margin-top: 20px;
 }
-.article-add-comment{
-    overflow:hidden;
+
+.article-add-comment {
+    overflow: hidden;
 }
-comment{
+
+comment {
 
 }
-.comment-meta{
+
+.comment-meta {
     font-weight: bold;
     font-size: 1.6rem;
 }
+
 .comment-meta > time {
     font-size: 1.2rem;
 }
 
-.login-block{
+.login-block {
     margin-top: 200px;
     display: block;
     overflow: hidden;
+}
+
+.error-block {
+    display: block;
+    margin-top: 200px;
+    overflow: hidden;
+}
+.fa-http-error{
+    font-size: 40px;
 }

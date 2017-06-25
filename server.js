@@ -5,7 +5,8 @@ const express = require('express')
     , session = require('express-session')
     , bodyParser = require('body-parser')
     , passport = require('passport')
-    , cookieParser = require('cookie-parser');
+    , cookieParser = require('cookie-parser')
+    , csrf = require('csurf');
 
 // maintain the order of middleware when using express with passport
 // http://passportjs.org/docs/authenticate
@@ -28,7 +29,14 @@ app.use(session({
     name: 'r_b_secure',
     resave: true,
     saveUninitialized: true,
+    cookie: {
+        // Prevent Scripts to access cookies.
+        httpOnly: true
+    }
 }));
+
+// Add CSRF Generation and validation
+app.use(csrf({cookie: true}));
 
 // Initialize passport
 app.use(passport.initialize());
@@ -49,6 +57,19 @@ passportLocal();
 
 // Makes the generated html easier to read
 app.locals.pretty = true;
+
+app.use(function (err, req, res, next) {
+
+    if (err.code !== 'EBADCSRFTOKEN') {
+        return next(err);
+    }
+
+    // handle CSRF token errors here
+    res.status(403).render('errors/403', {
+        title: 'Forbidden',
+        message: 'Invalid CSRF Token.'
+    });
+});
 
 // Add the frontend part of the app.
 app.use('/', require('./app/routes/frontend'));

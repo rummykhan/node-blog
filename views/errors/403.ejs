@@ -1,0 +1,22 @@
+<%- include('./includes/head', {title: title || 'Error'}) %>
+
+<div class="container">
+    <div class="row">
+        <div class="error-block">
+            <div class="col-md-8 col-md-offset-2">
+
+                <% if (!!title) { %>
+                <h1><%= title %></h1>
+                <% }else{ %>
+                <h1>Error!</h1>
+                <% } %>
+                <h3>
+                    You have disturbed the internal mechanism of the robot, Give us sometime to fix it.
+                    <i class="fa fa-wrench fa-http-error" aria-hidden="true"></i>
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('./includes/footer') %>

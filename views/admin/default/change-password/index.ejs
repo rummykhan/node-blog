@@ -1,0 +1,42 @@
+<%- include('../includes/head', {title: 'Change Password'}) %>
+<%- include('../includes/header') %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Change Password
+                </div>
+                <div class="panel-body">
+
+                    <form action="<%= `${app.adminPortal}/change/password` %>" method="POST">
+
+                        <div class="form-group">
+                            <label for="current_password">Current Password</label>
+                            <input type="password" name="current_password" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password_confirmation">Confirm Password</label>
+                            <input type="password" name="password_confirmation" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default form-control">Submit</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../includes/footer') %>

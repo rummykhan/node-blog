@@ -7,7 +7,13 @@ const express = require('express')
 
     // Require Models.
     , models = require('../models/index')
-    , appConfig = require('../../config/app');
+
+    // Get App Config
+    , appConfig = require('../../config/app')
+
+    // Get Auth Middleware
+    , isGuest = require('../middleware/guest')
+    , isAuthenticated = require('../middleware/user');
 
 router.get('/login', isGuest, function (req, res) {
     res.render('auth/default/login/index');
@@ -19,7 +25,16 @@ router.post('/login', passport.authenticate('local', {
 }));
 
 router.get('/', isAuthenticated, function (req, res) {
-    res.send('Admin G');
+    res.render('admin/default/home-page/index', {title: 'Dashboard'})
+});
+
+router.get('/change/password', isAuthenticated, function (req, res) {
+    res.render('admin/default/change-password/index');
+});
+
+router.get('/logout', isAuthenticated, function (req, res) {
+    req.logOut();
+    res.redirect(appConfig.adminLogin);
 });
 
 module.exports = router;

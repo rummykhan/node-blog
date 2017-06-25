@@ -15,6 +15,7 @@
 ### TODO
 
 1. Add CSRF Tokens Support
+2. Add Request Validator
 
 
 ### Help
@@ -31,6 +32,8 @@
 * https://stackoverflow.com/questions/16781294/passport-js-passport-initialize-middleware-not-in-use
 * https://stackoverflow.com/questions/19948816/error-failed-to-serialize-user-into-session
 * https://stackoverflow.com/questions/7042340/error-cant-set-headers-after-they-are-sent-to-the-client
+* https://github.com/expressjs/csurf
+* http://scottksmith.com/blog/2014/09/04/simple-steps-to-secure-your-express-node-application/
 
 ### Contact 
 
