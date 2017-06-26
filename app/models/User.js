@@ -8,7 +8,7 @@ const User = conn.define('users', {
     password: {type: Sequelize.STRING},
     remember_token: {type: Sequelize.STRING},
     created_at: {type: Sequelize.DATE},
-    updated_at: {type: Sequelize.DATE}
+    updated_at: {type: Sequelize.DATE},
 }, {
     underscored: true
 });
